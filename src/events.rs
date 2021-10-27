@@ -316,6 +316,7 @@ impl<T: Runtime> EventTypeRegistry<T> {
                 for arg in event.arguments() {
                     for primitive in arg.primitives() {
                         if !self.segmenters.contains_key(&primitive) {
+                            println!("Missing Types: {:?}",primitive);
                             missing.insert(format!(
                                 "{}::{}::{}",
                                 module.name(),

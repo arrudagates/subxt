@@ -16,6 +16,7 @@ description = "Submit extrinsics (transactions) to a substrate node via RPC"
 keywords = ["parity", "substrate", "blockchain"]
 include = ["Cargo.toml", "src/**/*.rs", "README.md", "LICENSE"]
 
+
 [features]
 default = ["tokio1"]
 client = ["substrate-subxt-client"]
@@ -57,6 +58,7 @@ frame-metadata = { git = "https://github.com/paritytech/substrate.git", branch =
 frame-support = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.10" }
 pallet-indices = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.10" }
 pallet-staking = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.10" }
+
 
 [dev-dependencies]
 assert_matches = "1.5.0"

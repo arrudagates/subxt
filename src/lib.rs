@@ -76,6 +76,7 @@ mod frame;
 mod metadata;
 mod rpc;
 mod runtimes;
+mod polkadex;
 mod subscription;
 #[cfg(test)]
 mod tests;
@@ -110,6 +111,7 @@ pub use crate::{
         SystemProperties,
     },
     runtimes::*,
+    polkadex::*,
     subscription::{
         EventStorageSubscription,
         EventSubscription,

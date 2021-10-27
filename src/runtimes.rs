@@ -71,6 +71,11 @@ pub mod app {
         use super::*;
         app_crypto!(ed25519, sp_core::crypto::KeyTypeId(*b"para"));
     }
+    /// Thea app crypto types
+    pub mod thea {
+        use super::*;
+        app_crypto!(sr25519, sp_core::crypto::KeyTypeId(*b"thea"));
+    }
 }
 
 impl sp_runtime::BoundToRuntimeAppPublic for Babe {
