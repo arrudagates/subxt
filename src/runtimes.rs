@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with substrate-subxt.  If not, see <http://www.gnu.org/licenses/>.
 
+use crate::polkadex::thea::Thea as TheaTrait;
 use codec::Encode;
 use sp_runtime::{
     generic::Header,
@@ -26,7 +27,6 @@ use sp_runtime::{
     MultiSignature,
     OpaqueExtrinsic,
 };
-use crate::polkadex::thea::Thea as TheaTrait;
 use sp_std::prelude::*;
 
 /// BABE marker struct
@@ -379,7 +379,6 @@ pub type AuthorityWeight = u64;
 /// A list of Grandpa authorities with associated weights.
 pub type AuthorityList = Vec<(AuthorityId, AuthorityWeight)>;
 
-
 /// Parachain marker struct
 #[derive(Copy, Clone, Debug, Default, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub struct Thea;
@@ -406,7 +405,6 @@ impl_opaque_keys! {
 /// Polkadex Runtime
 #[derive(Debug, Clone, Eq, PartialEq)]
 pub struct PolkadexRuntime;
-
 
 impl Staking for PolkadexRuntime {}
 
@@ -456,7 +454,6 @@ impl TheaTrait for PolkadexRuntime {
     type Balance = u128;
 }
 
-
 /// Register default common runtime type sizes
 pub fn register_polkadex_type_sizes<T: Runtime>(
     event_type_registry: &mut EventTypeRegistry<T>,
@@ -464,7 +461,9 @@ pub fn register_polkadex_type_sizes<T: Runtime>(
     event_type_registry.register_type_size::<T::AccountId>("T::AccountId");
     event_type_registry.register_type_size::<T::BlockNumber>("T::BlockNumber");
     event_type_registry
-        .register_type_size::<frame_support::dispatch::DispatchResultWithPostInfo>("PostInfo");
+        .register_type_size::<frame_support::dispatch::DispatchResultWithPostInfo>(
+            "PostInfo",
+        );
 }
 
 /// Register default common runtime type sizes

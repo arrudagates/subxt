@@ -1,3 +1,20 @@
+// This file is part of Polkadex.
+
+// Copyright (C) 2020-2021 Polkadex oü.
+// SPDX-License-Identifier: GPL-3.0-or-later WITH Classpath-exception-2.0
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <https://www.gnu.org/licenses/>.
 //! Implements support for the pallet_balances module.
 
 use core::marker::PhantomData;
@@ -7,39 +24,41 @@ use codec::{
     Decode,
     Encode,
 };
-use frame_support::{
-    Parameter,
-};
+use frame_support::Parameter;
 use sp_runtime::traits::{
     AtLeast32Bit,
     MaybeSerialize,
     Member,
 };
 
-use crate::frame::system::System;
-use crate::sp_runtime::RuntimeAppPublic;
-use crate::sp_runtime::traits::MaybeSerializeDeserialize;
+use crate::{
+    frame::system::System,
+    sp_runtime::{
+        traits::MaybeSerializeDeserialize,
+        RuntimeAppPublic,
+    },
+};
 
 /// Subset of Thea Config trait
 #[module]
 pub trait Thea: System {
     /// Authority identifier type
     type TheaId: Member
-    + Parameter
-    + RuntimeAppPublic
-    + Default
-    + MaybeSerializeDeserialize
-    + Ord;
+        + Parameter
+        + RuntimeAppPublic
+        + Default
+        + MaybeSerializeDeserialize
+        + Ord;
     /// The balance of an account.
     type Balance: Parameter
-    + Member
-    + AtLeast32Bit
-    + codec::Codec
-    + Default
-    + Copy
-    + MaybeSerialize
-    + Debug
-    + From<<Self as System>::BlockNumber>;
+        + Member
+        + AtLeast32Bit
+        + codec::Codec
+        + Default
+        + Copy
+        + MaybeSerialize
+        + Debug
+        + From<<Self as System>::BlockNumber>;
 }
 
 /// New Deposit Address event.

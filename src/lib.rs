@@ -74,10 +74,10 @@ mod events;
 pub mod extrinsic;
 mod frame;
 mod metadata;
+mod polkadex;
 mod rpc;
 mod runtimes;
 mod subscription;
-mod polkadex;
 
 #[cfg(test)]
 mod tests;
@@ -100,11 +100,11 @@ pub use crate::{
         UncheckedExtrinsic,
     },
     frame::*,
-    polkadex::*,
     metadata::{
         Metadata,
         MetadataError,
     },
+    polkadex::*,
     rpc::{
         BlockNumber,
         ExtrinsicSuccess,
