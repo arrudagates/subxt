@@ -76,8 +76,9 @@ mod frame;
 mod metadata;
 mod rpc;
 mod runtimes;
-mod polkadex;
 mod subscription;
+mod polkadex;
+
 #[cfg(test)]
 mod tests;
 
@@ -99,6 +100,7 @@ pub use crate::{
         UncheckedExtrinsic,
     },
     frame::*,
+    polkadex::*,
     metadata::{
         Metadata,
         MetadataError,
@@ -111,7 +113,6 @@ pub use crate::{
         SystemProperties,
     },
     runtimes::*,
-    polkadex::*,
     subscription::{
         EventStorageSubscription,
         EventSubscription,
