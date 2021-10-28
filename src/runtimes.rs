@@ -176,6 +176,7 @@ use crate::{
             SystemEventTypeRegistry,
         },
     },
+    polkadex::relay::Relay,
     EventTypeRegistry,
 };
 
@@ -453,6 +454,8 @@ impl TheaTrait for PolkadexRuntime {
     type TheaId = app::thea::Public;
     type Balance = u128;
 }
+
+impl Relay for PolkadexRuntime {}
 
 /// Register default common runtime type sizes
 pub fn register_polkadex_type_sizes<T: Runtime>(

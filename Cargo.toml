@@ -58,7 +58,7 @@ frame-metadata = { git = "https://github.com/paritytech/substrate.git", branch =
 frame-support = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.10" }
 pallet-indices = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.10" }
 pallet-staking = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.10" }
-
+bitcoin = { git = "https://github.com/Polkadex-Substrate/interbtc.git", branch = "polkadex" }
 
 [dev-dependencies]
 assert_matches = "1.5.0"
