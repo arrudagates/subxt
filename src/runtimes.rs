@@ -176,7 +176,10 @@ use crate::{
             SystemEventTypeRegistry,
         },
     },
-    polkadex::relay::Relay,
+    polkadex::{
+        btcrelay::BTCRelay,
+        relay::Relay,
+    },
     EventTypeRegistry,
 };
 
@@ -455,6 +458,7 @@ impl TheaTrait for PolkadexRuntime {
     type Balance = u128;
 }
 
+impl BTCRelay for PolkadexRuntime {}
 impl Relay for PolkadexRuntime {}
 
 /// Register default common runtime type sizes

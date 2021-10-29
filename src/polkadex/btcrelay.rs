@@ -27,26 +27,23 @@ use std::fmt::Debug;
 use codec::Encode;
 
 use crate::frame::system::System;
+
 /// Subset of Relay Config trait
 #[module]
-pub trait Relay: System {}
+pub trait BTCRelay: System {}
 
-/// Initialize block header call
-#[derive(Clone, Debug, Call, Encode)]
-pub struct Initialize<T: Relay> {
-    /// Raw Header
-    raw_block_header: RawBlockHeader,
-    /// Block height
-    block_height: u32,
-    /// Runtime marker
+/// Get Thea Public Keys
+#[derive(Clone, Debug, Eq, PartialEq, Store, Encode)]
+pub struct BestBlock<T: BTCRelay> {
+    #[store(returns = H256Le)]
+    /// to make rustc happy
     _runtime: PhantomData<T>,
 }
 
-/// Initialize block header call
-#[derive(Clone, Debug, Call, Encode)]
-pub struct StoreBlockHeader<T: Relay> {
-    /// Raw Header
-    raw_block_header: RawBlockHeader,
-    /// Runtime marker
+/// Get Thea Public Keys
+#[derive(Clone, Debug, Eq, PartialEq, Store, Encode)]
+pub struct BestBlockHeight<T: BTCRelay> {
+    #[store(returns = u32)]
+    /// to make rustc happy
     _runtime: PhantomData<T>,
 }

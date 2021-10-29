@@ -72,6 +72,7 @@ pub fn store(s: Structure) -> TokenStream {
     let params = utils::type_params(generics);
     let module = utils::module_name(generics);
     let store_name = utils::ident_to_name(ident, "Store").to_camel_case();
+    // let field_name = utils::ident_to_name(ident, "Store");
     let store = format_ident!("{}", store_name.to_snake_case());
     let store_iter = format_ident!("{}_iter", store_name.to_snake_case());
     let store_trait = format_ident!("{}StoreExt", store_name);
@@ -117,6 +118,7 @@ pub fn store(s: Structure) -> TokenStream {
         impl#generics #subxt::Store<T> for #ident<#(#params),*> {
             const MODULE: &'static str = MODULE;
             const FIELD: &'static str = #store_name;
+            // const FIELD: &'static str = #field_name;
             type Returns = #store_ret;
 
             fn prefix(
