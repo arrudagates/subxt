@@ -17,7 +17,7 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 //! Implements support for the pallet_balances module.
 
-use bitcoin::types::RawBlockHeader;
+use bitcoin::types::{RawBlockHeader,H256Le};
 use core::marker::PhantomData;
 use std::fmt::Debug;
 
@@ -51,5 +51,21 @@ pub struct StoreBlockHeader<T: Relay> {
     /// Raw Header
     raw_block_header: RawBlockHeader,
     /// Runtime marker
+    _runtime: PhantomData<T>,
+}
+
+/// Get Thea Public Keys
+#[derive(Clone, Debug, Eq, PartialEq, Store, Encode)]
+pub struct BestBlock<T: Relay> {
+    #[store(returns = H256Le)]
+    /// to make rustc happy
+    _runtime: PhantomData<T>,
+}
+
+/// Get Thea Public Keys
+#[derive(Clone, Debug, Eq, PartialEq, Store, Encode)]
+pub struct BestBlockHeight<T: Relay> {
+    #[store(returns = u32)]
+    /// to make rustc happy
     _runtime: PhantomData<T>,
 }
