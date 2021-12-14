@@ -220,13 +220,26 @@ impl RpcClient {
         method: &str,
         params: &[JsonValue],
     ) -> Result<T, Error> {
-        // let params = Some(params.into());
         log::debug!("request {}: {:?}", method, params);
         let data = match self {
             Self::WebSocket(inner) => {
-                inner.request(method, params).await.map_err(Into::into)
+                inner
+                    .request(
+                        method,
+                        jsonrpsee_types::v2::params::JsonRpcParams::ArrayRef(params),
+                    )
+                    .await
+                    .map_err(Into::into)
             }
-            Self::Http(inner) => inner.request(method, params).await.map_err(Into::into),
+            Self::Http(inner) => {
+                inner
+                    .request(
+                        method,
+                        jsonrpsee_types::v2::params::JsonRpcParams::ArrayRef(params),
+                    )
+                    .await
+                    .map_err(Into::into)
+            }
         };
         data
     }
@@ -238,11 +251,14 @@ impl RpcClient {
         params: &[JsonValue],
         unsubscribe_method: &str,
     ) -> Result<Subscription<T>, Error> {
-        // let params = Some(params.into());
         match self {
             Self::WebSocket(inner) => {
                 inner
-                    .subscribe(subscribe_method, params, unsubscribe_method)
+                    .subscribe(
+                        subscribe_method,
+                        jsonrpsee_types::v2::params::JsonRpcParams::ArrayRef(params),
+                        unsubscribe_method,
+                    )
                     .await
                     .map_err(Into::into)
             }
